@@ -1,0 +1,84 @@
+const fs = require("fs").promises
+const path = require("path")
+
+const Cart = require("./../model/Cart")
+const Product = require("./../model/Product")
+const User = require("./../model/User")
+
+class Repository {
+
+  users = new Set()
+  carts = new Map() // userId -> Cart
+  products = new Map() // productId -> Product
+
+  constructor() {
+    this._initialize()
+  }
+
+  createUser(name, password) {
+    const user = new User(null, name, password);
+    this.users.add(user)
+    return user
+  }
+
+  deleteUserById(userId) {
+    this.users.delete(userId)
+  }
+
+  findUserByName(name) {
+    for (let user of this.users) {
+      if (user.name === name) return user
+    }
+    return null
+  }
+
+  findAllUsers() {
+    return Array.from(this.users)
+  }
+
+  findProductById(productId) {
+    return this.products.get(productId)
+  }
+
+  findAllProducts() {
+    return Array.from(this.products.values())
+  }
+
+  findOrCreateCartByUserId(userId) {
+    let cart = this.carts.get(userId)
+    if (cart === undefined) {
+      cart = new Cart(userId)
+      this.carts.set(userId, cart)
+    }
+    return cart
+  }
+
+  saveCart(cart) {
+    this.carts.set(cart.userId, cart)
+  }
+
+  deleteCartByUserId(userId) {
+    carts.delete(userId)
+  }
+
+  // initiate the "database" from files on the disk on start-up
+  _initialize() {
+    fs.readFile(path.join(__dirname, "products.json"))
+      .then(buf => buf.toString())
+      .then(json => JSON.parse(json))
+      .then(ps => Array.from(ps).map(p => new Product(p.id, p.name, p.description, p.price)))
+      .then(ps => ps.forEach(p => this.products.set(p.id, p)))
+      .then(() => console.log(`initialized in-memory product database with ${this.products.size} entries`))
+      .catch(err => console.log(err))
+
+    fs.readFile(path.join(__dirname, "users.json"))
+      .then(buf => buf.toString())
+      .then(json => JSON.parse(json))
+      .then(us => Array.from(us).map(u => new User(u.id, u.name, u.password)))
+      .then(us => us.forEach(u => this.users.add(u)))
+      .then(() => console.log(`initialized in-memory user database with ${this.users.size} entries`))
+      .catch(err => console.log(err))
+  }
+}
+
+module.exports = new Repository()

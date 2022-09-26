@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 #{product.name}
+    p #{product.description}
+    p #{product.price} Euro
+    form(action="/cart" method="POST")
+        input(type="text" class="invisible" value=product.id name="productId")
+        button(type="submit" class="btn btn-success") In den Warenkorb

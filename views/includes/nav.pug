@@ -1,0 +1,13 @@
+nav(class="navbar navbar-expand-lg navbar-light bg-light")
+    div(class="container-fluid")
+        a(class="navbar-brand" href="/") Web Shop
+        div(class="collapse navbar-collapse")
+            ul(class="navbar-nav me-auto mb-2 mb-lg-0")
+                li(class="nav-item"): a(class="nav-link" href="/products") Produkte
+                li(class="nav-item"): a(class="nav-link" href="/cart") Warenkorb
+            form(class="d-flex")
+                if user.isAnonymous
+                    a(href="/login" class="me-1 btn btn-sm btn-secondary") Einloggen
+                    a(href="/signup" class="me-1 btn btn-sm btn-secondary") Account anlegen
+                else
+                    button(type="submit" formaction="/logout" formmethod="POST" class="me-1 btn btn-sm btn-secondary") Ausloggen

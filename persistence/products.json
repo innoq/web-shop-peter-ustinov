@@ -1,0 +1,20 @@
+[
+  {
+    "id": "p1",
+    "name": "T-Shirt",
+    "description": "A beautiful T-Shirt.",
+    "price": 12.95
+  },
+  {
+    "id": "p2",
+    "name": "Book",
+    "description": "An interesting book.",
+    "price": 24.50
+  },
+  {
+    "id": "p3",
+    "name": "Apple",
+    "description": "Juicy!",
+    "price": 1.00
+  }
+]

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 Anmelden
+    p Bitte melden Sie sich an, oder <a href="/signup">legen Sie einen Account an</a>.
+    form(action="/login" method="POST" novalidate)
+        div.mb-3
+            label(for="name" class="form-label") Name:
+            input(id="name" type="text" name="name" class="form-control")
+        div.mb-3
+            label(for="password" class="form-label") Passwort:
+            input(id="password" type="password" name="password" class="form-control")
+        div.mb-3
+            button(type="submit" class="btn btn-primary") Senden
