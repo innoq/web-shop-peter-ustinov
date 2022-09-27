@@ -1,8 +1,19 @@
 extends layout
 
+append head
+    title Anmeldung
+
 block content
-    h1 Anmelden
-    p Bitte melden Sie sich an, oder <a href="/signup">legen Sie einen Account an</a>.
+    h1.mb-3 Anmelden
+
+    if error
+        div(class="alert alert-danger") #{error}
+    else
+        if message
+            p #{message}
+        else
+            p Bitte melden Sie sich an.
+        p.mb-3 Sie haben noch keinen Account? Hier geht's zur <a href="/signup">Neuanmeldung</a>.
     form(action="/login" method="POST" novalidate)
         div.mb-3
             label(for="name" class="form-label") Name:

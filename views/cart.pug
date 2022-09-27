@@ -1,9 +1,12 @@
 extends layout
 
+append head
+    title Warenkorb
+
 block content
     h1(class="mb-3") Warenkorb
 
-    if cart
+    if cart.numberOfItems > 0
         table(class="table align-middle")
             thead
                 tr
@@ -21,8 +24,9 @@ block content
                         td(class="text-end") #{item.singlePrice}
                         td(class="text-end") #{item.totalPrice}
                         td(style="white-space: nowrap; width: 1%")
-                            form(action="/cart/remove" method="POST")
+                            form(action="/cart" method="POST")
                                 input(type="text" class="d-none" value=item.productId name="productId")
+                                input(type="number" class="d-none" value=-item.count name="count")
                                 button(type="submit" class="btn btn-sm btn-danger") X
             tfoot
                 tr(class="table-primary")

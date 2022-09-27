@@ -20,4 +20,11 @@ app.use(session({
 
 app.use(routes)
 
+// for lack of a better place... clear the last message/error for this session
+app.use((req, res, next) => {
+  delete req.session.message
+  delete req.session.error
+  next()
+})
+
 app.listen(3000)

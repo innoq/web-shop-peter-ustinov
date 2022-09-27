@@ -1,4 +1,4 @@
-const uuid = require("uuid").v5
+const uuid = require("uuid").v4
 
 class Product {
   constructor(id, name, description, price) {

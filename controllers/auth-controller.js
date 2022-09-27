@@ -1,59 +1,61 @@
+const sessionUtils = require("./session-utils")
 const repository = require("./../persistence/repository")
 const bcrypt = require("bcrypt")
 
 const authController = {
 
-  restrict: (req, res, next) => req.session.user ? next() : res.redirect("/login"),
-
-  getLogin: (req, res) => res.render("login", {
-    title: "Anmeldung",
-    user: { isAnonymous: !req.session.user }
-  }),
+  getLogin: (req, res) => {
+    const viewModel = sessionUtils.generateBaseViewModelFromSession(req.session)
+    return res.render("login", viewModel)
+  },
 
   postLogin: (req, res) => {
     const { name, password } = req.body
     const user = authenticate(name, password)
 
     if (user) {
-      createUserSession(req, user)
-      res.redirect("/")
+      sessionUtils.createUserSession(req.session, user)
+      let route = "/"
+      if (req.session.intendedRoute) {
+        route = req.session.intendedRoute
+        // we are redirecting where the user wanted to go originally, delete the cached route
+        delete req.session.indendedRoute
+      }
+      res.redirect(route)
     } else {
+      req.session.error = "Die Zugangsdaten sind ungültig."
       res.redirect("/login")
     }
   },
 
   postLogout: (req, res) => {
-    deleteUserSession(req)
+    sessionUtils.deleteUserSession(req.session)
     res.redirect("/")
   },
 
-  getSignup: (req, res) => res.render("signup", {
-    title: "Kontoerstellung",
-    user: {
-      isAnonymous: !req.session.user
-    }
-  }),
+  getSignup: (req, res) => {
+    const viewModel = sessionUtils.generateBaseViewModelFromSession(req.session)
+    res.render("signup", viewModel)
+  },
 
   postSignup: (req, res) => {
     const { name, password } = req.body
     const hash = bcrypt.hashSync(password, 10)
     const user = repository.createUser(name, hash)
-    createUserSession(req, user)
-    res.redirect("/")
+    sessionUtils.createUserSession(req.session, user)
+
+    let route = "/"
+    if (req.session.intendedRoute) {
+      route = req.session.intendedRoute
+      delete req.session.intendedRoute
+    }
+    res.redirect(route)
   },
 
   getUsers: (req, res) => {
     const users = repository.findAllUsers()
     res.send(users)
   },
-}
-
-function createUserSession(req, { id }) {
-  req.session.user = { id }
-}
-
-function deleteUserSession(req) {
-  delete req.session.user
 }
 
 function authenticate(name, password) {

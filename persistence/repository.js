@@ -25,6 +25,13 @@ class Repository {
     this.users.delete(userId)
   }
 
+  findUserById(userId) {
+    for (let user of this.users) {
+      if (user.id === userId) return user
+    }
+    return null
+  }
+
   findUserByName(name) {
     for (let user of this.users) {
       if (user.name === name) return user

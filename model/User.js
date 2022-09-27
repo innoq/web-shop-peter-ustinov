@@ -1,4 +1,4 @@
-const uuid = require("uuid").v5
+const uuid = require("uuid").v4
 
 class User {
   constructor(id, name, hash) {

@@ -1,4 +1,4 @@
-nav(class="navbar navbar-expand-sm navbar-light bg-light")
+nav(class="navbar navbar-dark bg-dark navbar-expand-sm navbar-light bg-light")
     div(class="container-fluid")
         button(class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
             span(class="navbar-toggler-icon")
@@ -6,6 +6,8 @@ nav(class="navbar navbar-expand-sm navbar-light bg-light")
             ul(class="navbar-nav me-auto mb-2 mb-lg-0")
                 li(class="nav-item"): a(class="nav-link" href="/products") Produkte
                 li(class="nav-item"): a(class="nav-link" href="/cart") Warenkorb
+                    if cart.numberOfItems > 0
+                        span  (#{cart.numberOfItems})
             form(class="d-flex")
                 if user.isAnonymous
                     a(href="/login" class="me-1 btn btn-sm btn-secondary") Einloggen

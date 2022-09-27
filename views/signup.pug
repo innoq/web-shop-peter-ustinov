@@ -1,7 +1,15 @@
 extends layout
 
+append head
+    title Konto erstellen
+
 block content
-    h1 Einen Account erstellen
+    h1.mb-3 Einen Account erstellen
+
+    p.mb-3 Bitte geben Sie einen Benutzernamen und ein Passwort ein, um einen neuen Account zu erstellen.
+
+    p.mb-3 Wenn Sie schon einen Account haben, geht's hier zur <a href="/login">Anmeldung</a>.
+
     form(action="/signup" method="POST" novalidate)
         div.mb-3
             label(for="name" class="form-label") Name:
