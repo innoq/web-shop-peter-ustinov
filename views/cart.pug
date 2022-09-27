@@ -27,7 +27,7 @@ block content
                             form(action="/cart" method="POST")
                                 input(type="text" class="d-none" value=item.productId name="productId")
                                 input(type="number" class="d-none" value=-item.count name="count")
-                                button(type="submit" class="btn btn-sm btn-danger") X
+                                button(type="submit" class="btn btn-sm btn-outline-default text-danger") <i class="mdi mdi-delete"></i>
             tfoot
                 tr(class="table-primary")
                     td

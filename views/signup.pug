@@ -12,13 +12,19 @@ block content
 
     form(action="/signup" method="POST" novalidate)
         div.mb-3
-            label(for="name" class="form-label") Name:
-            input(id="name" type="text" name="name" class="form-control")
+            div(class="input-group")
+                span(class="input-group-text")
+                    i(class="mdi mdi-account")
+                input(id="name" type="text" name="name" class="form-control" placeholder="Benutzername")
         div.mb-3
-            label(for="password" class="form-label") Passwort:
-            input(id="password" type="password" name="password" class="form-control")
+            div(class="input-group")
+                span(class="input-group-text")
+                    i(class="mdi mdi-key")
+                input(id="password" type="password" name="password" class="form-control" placeholder="Passwort")
         div.mb-3
-            label(for="password-repeat" class="form-label") Passwort wiederholen:
-            input(id="password-repeat" type="password" name="password-repeat" class="form-control")
+            div(class="input-group")
+                span(class="input-group-text")
+                    i(class="mdi mdi-key")
+                input(id="password-repeat" type="password" name="password-repeat" class="form-control" placeholder="Passwort wiederholen")
         div.mb-3
             button(type="submit" class="btn btn-primary") Senden

@@ -7,19 +7,23 @@ block content
     h1.mb-3 Anmelden
 
     if error
-        div(class="alert alert-danger") #{error}
+        div(class="alert alert-danger") <i class="mdi mdi-alert-circle"></i> #{error}
     else
         if message
             p #{message}
         else
             p Bitte melden Sie sich an.
-        p.mb-3 Sie haben noch keinen Account? Hier geht's zur <a href="/signup">Neuanmeldung</a>.
+        p.mb-3 Sie haben noch keinen Account? Hier geht's zur <a href="/signup"> Neuanmeldung</a>.
     form(action="/login" method="POST" novalidate)
         div.mb-3
-            label(for="name" class="form-label") Name:
-            input(id="name" type="text" name="name" class="form-control")
+            div(class="input-group")
+                span(class="input-group-text")
+                    i(class="mdi mdi-account")
+                input(id="name" type="text" name="name" class="form-control" placeholder="Benutzername")
         div.mb-3
-            label(for="password" class="form-label") Passwort:
-            input(id="password" type="password" name="password" class="form-control")
+            div(class="input-group")
+                span(class="input-group-text")
+                    i(class="mdi mdi-key")
+                input(id="password" type="password" name="password" class="form-control" placeholder="Passwort")
         div.mb-3
             button(type="submit" class="btn btn-primary") Senden
