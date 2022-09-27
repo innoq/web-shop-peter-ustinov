@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    h1(class="mb-3") Warenkorb
+
+    if cart
+        table(class="table align-middle")
+            thead
+                tr
+                    th(style="white-space: nowrap; width: 1%") Anzahl
+                    th Produkt
+                    th(class="text-end") Einzelpreis
+                    th(class="text-end") Gesamtpreis
+                    th(style="white-space: nowrap; width: 1%")
+                tr
+            tbody
+                each item in cart.items
+                    tr
+                        td #{item.count}
+                        td: a(href=`/product/${item.productId}`) #{item.productName}
+                        td(class="text-end") #{item.singlePrice}
+                        td(class="text-end") #{item.totalPrice}
+                        td(style="white-space: nowrap; width: 1%")
+                            form(action="/cart/remove" method="POST")
+                                input(type="text" class="d-none" value=item.productId name="productId")
+                                button(type="submit" class="btn btn-sm btn-danger") X
+            tfoot
+                tr(class="table-primary")
+                    td
+                    td
+                    td(class="text-end")
+                    td(class="text-end") #{cart.total}
+                    td(style="white-space: nowrap; width: 1%")
+
+    else
+        p Ihr Warenkorb ist leer.

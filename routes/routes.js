@@ -10,6 +10,7 @@ router.get("/products", shopController.getProducts)
 router.get("/product/:productId", shopController.getProduct)
 router.get("/cart", authController.restrict, shopController.getCart)
 router.post("/cart", authController.restrict, shopController.postCart)
+router.post("/cart/remove", authController.restrict, shopController.postCartRemove)
 
 // authentication routes
 router.get("/login", authController.getLogin)

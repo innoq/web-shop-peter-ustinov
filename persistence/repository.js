@@ -40,13 +40,21 @@ class Repository {
     return this.products.get(productId)
   }
 
+  findProductsInCart(cart) {
+    return new Map([...cart.items.keys()].map(id => [id, this.products.get(id)]))
+  }
+
   findAllProducts() {
     return Array.from(this.products.values())
   }
 
+  findCartByUserId(userId) {
+    return this.carts.get(userId) || null
+  }
+
   findOrCreateCartByUserId(userId) {
-    let cart = this.carts.get(userId)
-    if (cart === undefined) {
+    let cart = this.findCartByUserId(userId)
+    if (!cart) {
       cart = new Cart(userId)
       this.carts.set(userId, cart)
     }
@@ -58,7 +66,7 @@ class Repository {
   }
 
   deleteCartByUserId(userId) {
-    carts.delete(userId)
+    this.carts.delete(userId)
   }
 
   // initiate the "database" from files on the disk on start-up

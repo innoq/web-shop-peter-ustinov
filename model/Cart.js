@@ -1,15 +1,15 @@
 class Cart {
   constructor(userId) {
     this.userId = userId
-    this.items = new Map()
+    this.items = new Map() // productId -> count
   }
 
-  add(productId, count = 1) {
-    this.items.set(productId, (items.get(productId) || 0) + count)
+  addProduct(productId, count = 1) {
+    this.items.set(productId, (this.items.get(productId) || 0) + count)
     return this
   }
 
-  remove(productId) {
+  removeProduct(productId) {
     this.items.delete(productId)
     return this
   }
