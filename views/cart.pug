@@ -6,7 +6,7 @@ append head
 block content
     h1(class="mb-3") Warenkorb
 
-    if cart.numberOfItems > 0
+    if cart.itemCount > 0
         table(class="table align-middle")
             thead
                 tr
@@ -15,7 +15,6 @@ block content
                     th(class="text-end") Einzelpreis
                     th(class="text-end") Gesamtpreis
                     th(style="white-space: nowrap; width: 1%")
-                tr
             tbody
                 each item in cart.items
                     tr

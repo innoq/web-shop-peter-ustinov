@@ -4,12 +4,14 @@ exports.generateBaseViewModelFromSession = (session) => {
     const user = session.user ? repository.findUserById(session.user.id) : null
     const cart = user ? repository.findCartByUserId(user.id) : null
 
-    return {
+    const viewModel = {
         message: session.message,
         error: session.error,
         user: {isAnonymous: user === null},
-        cart: {numberOfItems: cart?.items.size || 0},
+        cart: {itemCount: cart?.itemCount || 0},
     }
+    if (user) viewModel.user.name = user.name
+    return viewModel
 }
 
 exports.clearSessionForNextRequest = (session) => {

@@ -4,9 +4,11 @@ class Cart {
     this.items = new Map() // productId -> count
   }
 
-  changeItemCount(productId, count) {
-    let newCount = (this.items.get(productId) || 0) + count
-    if (newCount !== 0) {
+  get itemCount() { return this.items.size }
+
+  changeItemCountBy(productId, delta) {
+    let newCount = (this.items.get(productId) || 0) + delta
+    if (newCount > 0) {
       this.items.set(productId, newCount)
     } else {
       this.items.delete(productId)

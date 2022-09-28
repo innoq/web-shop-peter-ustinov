@@ -5,12 +5,12 @@ nav(class="navbar navbar-dark bg-dark navbar-expand-sm navbar-light bg-light")
         div(class="collapse navbar-collapse" id="navbarSupportedContent")
             ul(class="navbar-nav me-auto mb-2 mb-lg-0")
                 li(class="nav-item"): a(class="nav-link" href="/products") <i class="mdi mdi-package-variant"></i> Produkte
-                li(class="nav-item"): a(class="nav-link" href="/cart"): <i class="mdi mdi-cart"></i> Warenkorb
-                    if cart.numberOfItems > 0
-                        span  (#{cart.numberOfItems})
+                li(class="nav-item"): a(class="nav-link" href="/cart"): <i class="mdi mdi-cart-outline"></i> Warenkorb
+                    if cart.itemCount > 0
+                        span  (#{cart.itemCount})
             form(class="d-flex")
                 if user.isAnonymous
-                    a(href="/login" class="me-3 btn btn-sm btn-secondary") <i class="mdi mdi-login"></i> Einloggen
+                    a(href="/login" class="me-3 btn btn-sm btn-secondary") <i class="mdi mdi-login"></i> Anmelden
                     a(href="/signup" class="me-3 btn btn-sm btn-secondary") <i class="mdi mdi-account-plus"></i> Account anlegen
                 else
-                    button(type="submit" formaction="/logout" formmethod="POST" class="me-3 btn btn-sm btn-secondary") <i class="mdi mdi-logout"></i> Ausloggen
+                    button(type="submit" formaction="/logout" formmethod="POST" class="me-3 btn btn-sm btn-secondary") <i class="mdi mdi-logout"></i> Abmelden

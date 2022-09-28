@@ -84,7 +84,7 @@ const shopController = {
     const count = Number.parseInt(req.body.count)
 
     let cart = repository.findOrCreateCartByUserId(req.session.user.id)
-    cart = cart.changeItemCount(productId, count)
+    cart = cart.changeItemCountBy(productId, count)
     if (cart.items.size > 0) {
       repository.saveCart(cart)
       if (!req.session.cart) req.session.cart = { id: cart.id }
