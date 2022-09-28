@@ -23,7 +23,7 @@ Die folgenden Features müssen wir noch einbauen bzw. verbessern:
 
 - Node.js 16
 - Express 4
-- Bootstrap 5
+- Bootstrap 5 + Material Design Icons
 
 ## Entwicklung
 

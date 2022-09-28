@@ -6,7 +6,6 @@ const shopController = {
   getProduct: (req, res) => {
     const { productId } = req.params
     const product = repository.findProductById(productId)
-    console.log("found product for id", productId, ": ", product)
     if (product) {
       const viewModel = {
         ...sessionUtils.generateBaseViewModelFromSession(req.session),
@@ -70,7 +69,6 @@ const shopController = {
 
     sessionUtils.clearSessionForNextRequest(req.session)
     res.render("cart", viewModel)
-    console.log("CART RENDERED and still logging! :)")
   },
 
   postCart: (req, res) => {
