@@ -18,6 +18,7 @@ Die folgenden Features müssen wir noch einbauen bzw. verbessern:
 - [ ] Das Produktmodell erweitern (Bilder?).
 - [ ] Checkout/Bestellung aufgeben. (Was muss dafür passieren?)
 - [ ] Vergangene Bestellungen anzeigen.
+- [ ] Nice to have: Den Benutzernamen anzeigen.
 
 ## Tech Stack
 
