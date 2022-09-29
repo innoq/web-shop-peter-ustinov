@@ -27,6 +27,6 @@ Die folgenden Features müssen wir noch einbauen bzw. verbessern:
 
 ## Entwicklung
 
-1. Das Repository klonen: `git clone git@github.com:innoq/web-shop-peter-ustinov.git`
+1. Das Repository klonen: `git clone https://github.com/innoq/web-shop-peter-ustinov.git`
 2. Packages installieren: `cd web-shop-peter-ustinov; npm install`
 3. Um die App zu starten, führe `npm start` aus oder nutze die IDE. Einfach fragen. :) Im Browser kannst du die App dann unter der Adresse `localhost:3000` aufrufen.
