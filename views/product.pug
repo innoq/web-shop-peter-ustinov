@@ -9,6 +9,6 @@ block content
     p #{product.price} Euro
     form(action="/cart" method="POST")
         input(type="text" class="d-none" value=product.id name="productId")
-        div(class="input-group" style="width: 30%")
-            input(type="number" class="form-control" value=1 min=0 name="count")
+        div(class="input-group justify-content-start")
+            input(type="number" class="form-control" style="max-width: 75px" value=1 min=0 name="count")
             button(type="submit" class="btn btn-sm btn-primary") <i class="mdi mdi-cart-arrow-down"></i> In den Warenkorb
