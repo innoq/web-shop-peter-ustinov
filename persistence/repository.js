@@ -1,3 +1,12 @@
+/*
+ * You would normally use a proper database to persist your entities. We are being lazy here: To avoid the
+ * configuration overhead, we use an in-memory database that's hidden inside the Repository class.
+ * (The term Repository is often used for an object that manages object creation and persistence.)
+ *
+ * We initialize the database on start-up from files on the disk. Change the json files in this directory if you
+ * want to add or remove entities.
+ */
+
 const fs = require("fs").promises
 const path = require("path")
 
@@ -76,7 +85,7 @@ class Repository {
     this.carts.delete(userId)
   }
 
-  // initiate the "database" from files on the disk on start-up
+  // Initialize the "database" from files on the disk on start-up.
   _initialize() {
     fs.readFile(path.join(__dirname, "products.json"))
       .then(buf => buf.toString())

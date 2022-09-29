@@ -42,6 +42,7 @@ const authController = {
     const { name, password } = req.body
     const hash = bcrypt.hashSync(password, 10)
     const user = repository.createUser(name, hash)
+    console.log("created new user:", user)
     sessionUtils.createUserSession(req.session, user)
 
     let route = "/"

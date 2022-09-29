@@ -2,19 +2,19 @@
   {
     "id": "p1",
     "name": "T-Shirt",
-    "description": "A beautiful T-Shirt.",
+    "description": "In verschiedenen Farben, modischer Schnitt, 100% Baumwolle.",
     "price": 12.95
   },
   {
     "id": "p2",
-    "name": "Book",
-    "description": "An interesting book.",
+    "name": "Skiena: The Algorithm Design Manual",
+    "description": "Lehrbuch für Algorithmen. Enthält einen umfangreichen Katalog von bekannten Algorithmen.",
     "price": 24.50
   },
   {
     "id": "p3",
-    "name": "Apple",
-    "description": "Juicy!",
+    "name": "Apfel",
+    "description": "Saftig, süß.",
     "price": 1.00
   }
 ]
