@@ -4,12 +4,12 @@ const bcrypt = require("bcrypt")
 
 const authController = {
 
-  getLogin: (req, res) => {
+  getLogin(req, res) {
     const viewModel = sessionUtils.generateBaseViewModelFromSession(req.session)
     return res.render("login", viewModel)
   },
 
-  postLogin: (req, res) => {
+  postLogin(req, res) {
     const { name, password } = req.body
     const user = authenticate(name, password)
 
@@ -28,17 +28,17 @@ const authController = {
     }
   },
 
-  postLogout: (req, res) => {
+  postLogout(req, res) {
     sessionUtils.deleteUserSession(req.session)
     res.redirect("/")
   },
 
-  getSignup: (req, res) => {
+  getSignup(req, res) {
     const viewModel = sessionUtils.generateBaseViewModelFromSession(req.session)
     res.render("signup", viewModel)
   },
 
-  postSignup: (req, res) => {
+  postSignup(req, res) {
     const { name, password } = req.body
     const hash = bcrypt.hashSync(password, 10)
     const user = repository.createUser(name, hash)
@@ -53,7 +53,7 @@ const authController = {
     res.redirect(route)
   },
 
-  getUsers: (req, res) => {
+  getUsers(req, res) {
     const users = repository.findAllUsers()
     res.send(users)
   },

@@ -3,7 +3,7 @@ const sessionUtils =require("./session-utils")
 
 const shopController = {
 
-  getProduct: (req, res) => {
+  getProduct(req, res) {
     const { productId } = req.params
     const product = repository.findProductById(productId)
     if (product) {
@@ -23,7 +23,7 @@ const shopController = {
     }
   },
 
-  getProducts: (req, res) => {
+  getProducts(req, res) {
     const products = repository.findAllProducts()
     const viewModel = {
       ...sessionUtils.generateBaseViewModelFromSession(req.session),
@@ -39,7 +39,7 @@ const shopController = {
     return res.render("products", viewModel)
   },
 
-  getCart: (req, res) => {
+  getCart(req, res) {
     if (!req.session.user) {
       req.session.message = "Um Ihren Warenkorb einzusehen, müssen Sie sich anmelden."
       req.session.intendedRoute = "/cart" // save destination for redirect after login
@@ -71,7 +71,7 @@ const shopController = {
     res.render("cart", viewModel)
   },
 
-  postCart: (req, res) => {
+  postCart(req, res) {
     if (!req.session.user) {
       req.session.message = "Bitte melden Sie sich zuerst an, um einzukaufen."
       req.session.intendedRoute = `/product/${req.body.productId}` // save route for redirect after login
